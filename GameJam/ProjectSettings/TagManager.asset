@@ -9,6 +9,7 @@ TagManager:
   - Wood
   - Wood
   - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX

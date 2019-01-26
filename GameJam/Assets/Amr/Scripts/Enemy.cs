@@ -6,6 +6,11 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     // Start is called before the first frame update
+    public AudioSource ASource;
+    public AudioClip BreathingClip;
+    public AudioClip StepClip;
+    public AudioClip HitClip;
+    
     public Vector3 SpawnPlace;
     public float NearSpawnPlaceLimit=1f;
     public Rect [] DangerZone;
@@ -19,6 +24,8 @@ public class Enemy : MonoBehaviour
     private Animator Anim;
     public Vector3 homePlace = new Vector3 (0,0,0);
     public static float distanceToHomeLimit = 5;
+
+    public GameObject weaponObj;
     void Start()
     {
         NMA = GetComponent<NavMeshAgent>();
@@ -27,19 +34,23 @@ public class Enemy : MonoBehaviour
 
     }
     void FixedUpdate()
-    {   
+    {    Clock-=Time.deltaTime;
         if(Vector3.Distance(PlayerObject.transform.position,transform.position)<attackRange){
              walk(false,Vector3.zero);
              attack(true,PlayerObject.transform.position);
-        }
+             nearPlayer(true);
+        }else{
         if (Vector3.Distance(PlayerObject.transform.position,SpawnPlace)<Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace) && Vector3.Distance(PlayerObject.transform.position,homePlace)>distanceToHomeLimit){   
             walk(true,PlayerObject.transform.position);
             print(Vector3.Distance(PlayerObject.transform.position,SpawnPlace)+" "+Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace));
         }else{
-                if(Vector3.Distance(transform.position,SpawnPlace)>NearSpawnPlaceLimit)
-                walk(true,SpawnPlace);
+                if(Vector3.Distance(transform.position,SpawnPlace)>NearSpawnPlaceLimit){
+                    walk(true,SpawnPlace);
+                }else{
+                    walk(false,SpawnPlace);
+                }
             }
-        
+        }
     }
     
     void walk(bool  isFollowing, Vector3 position){
@@ -94,12 +105,14 @@ public class Enemy : MonoBehaviour
         backDown(true);
     }
 
-     void OnDrawGizmosSelected()
-     {
+    void OnDrawGizmosSelected()
+    {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(homePlace,distanceToHomeLimit);
-            
     }
 
+    void ActivateWeapon(int isActive){
+        weaponObj.GetComponent<BoxCollider>().enabled =isActive==1;
+    }
      
 }
