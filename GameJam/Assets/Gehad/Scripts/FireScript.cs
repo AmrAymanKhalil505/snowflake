@@ -27,9 +27,9 @@ public class FireScript : MonoBehaviour
         if(intensity > 0)
         {
             intensity -= Time.deltaTime * speed;
-            r -= Time.deltaTime * speed;
-            g -= Time.deltaTime * speed;
-            b -= Time.deltaTime * speed;
+            r = intensity;
+            g = intensity;
+            b = intensity;
             mat.SetColor("_Color", new Color(r, g, b, 1));
         }
     }
