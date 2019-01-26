@@ -17,8 +17,6 @@ public class Canvas : MonoBehaviour
         clearPanels();
         StartPanel.SetActive(true);
     }
-    
-    }
     void newGameOnClick(){
         SceneManager.LoadScene(NewGameScene);
     }

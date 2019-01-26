@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     public GameObject OtherEnemy;
     public float RotationSpeed = 0.3f;
     private NavMeshAgent NMA ;
+    private bool isNMAStopped=false;
     private Animator Anim;
     public Vector3 homePlace = new Vector3 (0,0,0);
     public static float distanceToHomeLimit = 5;
@@ -36,13 +37,18 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {    Clock-=Time.deltaTime;
         if(Vector3.Distance(PlayerObject.transform.position,transform.position)<attackRange){
-             walk(false,transform.position);
-             attack(true,PlayerObject.transform.position);
-             nearPlayer(true);
+            //walk(false,Vector3.zero);
+            walk(false, transform.position);
+            attack(true,PlayerObject.transform.position);
+            nearPlayer(true);
         }else{
         if (Vector3.Distance(PlayerObject.transform.position,SpawnPlace)<Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace) && Vector3.Distance(PlayerObject.transform.position,homePlace)>distanceToHomeLimit){   
-            walk(true,PlayerObject.transform.position);
-            print(Vector3.Distance(PlayerObject.transform.position,SpawnPlace)+" "+Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace));
+            if(isNMAStopped){
+                walk(false, transform.position);
+            }else{
+                walk(true,PlayerObject.transform.position);
+            }
+            //print(Vector3.Distance(PlayerObject.transform.position,SpawnPlace)+" "+Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace));
         }else{
                 if(Vector3.Distance(transform.position,SpawnPlace)>NearSpawnPlaceLimit){
                     walk(true,SpawnPlace);
@@ -115,5 +121,8 @@ public class Enemy : MonoBehaviour
     void ActivateWeapon(int isActive){
         weaponObj.GetComponent<BoxCollider>().enabled =isActive==1;
     }
-     
+    void isNMA (int isNMA){
+        NMA.isStopped=isNMA==1;
+        isNMAStopped=isNMA==1;
+    }
 }
