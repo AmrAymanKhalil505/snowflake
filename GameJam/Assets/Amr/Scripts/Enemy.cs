@@ -36,9 +36,10 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {    Clock-=Time.deltaTime;
         if(Vector3.Distance(PlayerObject.transform.position,transform.position)<attackRange){
-             walk(false,Vector3.zero);
-             attack(true,PlayerObject.transform.position);
-             nearPlayer(true);
+            //walk(false,Vector3.zero);
+            walk(false, transform.position);
+            attack(true,PlayerObject.transform.position);
+            nearPlayer(true);
         }else{
         if (Vector3.Distance(PlayerObject.transform.position,SpawnPlace)<Vector3.Distance(PlayerObject.transform.position,OtherEnemy.GetComponent<Enemy>().SpawnPlace) && Vector3.Distance(PlayerObject.transform.position,homePlace)>distanceToHomeLimit){   
             walk(true,PlayerObject.transform.position);
@@ -55,6 +56,7 @@ public class Enemy : MonoBehaviour
     
     void walk(bool  isFollowing, Vector3 position){
         if(!isFollowing){
+            NMA.SetDestination(position);
             NMA.isStopped=true;
             walk(false);
             return;
