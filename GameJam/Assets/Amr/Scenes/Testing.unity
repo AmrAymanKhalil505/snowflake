@@ -529,6 +529,11 @@ PrefabInstance:
       propertyPath: OtherEnemy
       value: 
       objectReference: {fileID: 6492239216571228998}
+    - target: {fileID: 6513870350315077722, guid: 95223cd1920f617478a8a6e782c31d44,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95223cd1920f617478a8a6e782c31d44, type: 3}
 --- !u!1001 &935824177
@@ -845,6 +850,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662534831854155576, guid: db9d42245bb2b1f4c92cdbd122997d8e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 672932486818618145, guid: db9d42245bb2b1f4c92cdbd122997d8e,
         type: 3}

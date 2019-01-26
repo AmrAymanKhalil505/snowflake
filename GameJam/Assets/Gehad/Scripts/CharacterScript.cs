@@ -139,6 +139,12 @@ public class CharacterScript : MonoBehaviour
             other.GetComponent<BoxCollider>().enabled = false;
             //Destroy(other.gameObject);
         }
+
+        if(other.tag == "Weapon")
+        {
+            anim.SetTrigger("hit");
+            currentHealth -= 20;
+        }
     }
 
     void OnTriggerExit(Collider other)
