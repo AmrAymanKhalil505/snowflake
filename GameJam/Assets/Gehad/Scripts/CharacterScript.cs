@@ -104,7 +104,7 @@ public class CharacterScript : MonoBehaviour
                 if (numOfWood > 0)
                 {
                     anim.SetBool("Carry", false);
-                    for (int i = 0; i < PlayerArm.transform.GetChildCount(); i++)
+                    for (int i = 0; i < PlayerArm.transform.childCount; i++)
                     {
                         if (PlayerArm.transform.GetChild(i).name.Contains("Wood"))
                         {

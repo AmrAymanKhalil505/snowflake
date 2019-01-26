@@ -27,7 +27,7 @@ public class SpwanManager : MonoBehaviour
         Quaternion angle = Quaternion.Euler(0,Random.Range(0,360),0);
         Vector3 position = angle*(transform.forward * distance);
         TempWood.gameObject.transform.position = position;
-        print("distance :"+distance+" angle :"+angle.eulerAngles+" final :"+  position);
+        //print("distance :"+distance+" angle :"+angle.eulerAngles+" final :"+  position);
         
     }
     void OnDrawGizmosSelected()
