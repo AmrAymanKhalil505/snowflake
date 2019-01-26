@@ -65,7 +65,7 @@ public class CharacterScript : MonoBehaviour
             if (Fire.GetComponent<FireScript>().intensity > 0)
             {
                 currentHealth = maxHealth;
-                Fire.GetComponent<FireScript>().intensity += 0.2f * numOfWood;
+                Fire.GetComponent<FireScript>().intensity += 0.5f * numOfWood;
                 numOfWood = 0;
                 if(Fire.GetComponent<FireScript>().intensity > 1)
                 {
