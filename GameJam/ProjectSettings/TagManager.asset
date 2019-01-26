@@ -7,6 +7,8 @@ TagManager:
   - Home
   - Fire
   - Wood
+  - Wood
+  - Enemy
   layers:
   - Default
   - TransparentFX
